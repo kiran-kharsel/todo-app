@@ -3,7 +3,15 @@ import './style.css'
 
 function TodoList({todos = []}) {
   return (
-    <div>TodoList</div>
+    <div>
+      {
+        todos.map((data) => {
+          return (
+            <div key={data.id}>{data.todo}</div>
+          )
+        })
+      }
+    </div>
   )
 }
 

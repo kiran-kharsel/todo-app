@@ -30,7 +30,7 @@ function TodoApp() {
         <Button label={'add'} onClick={handleAddTodo}/>
       </div>
 
-      <TodoList/>
+      <TodoList todos={todoList}/>
     </div>
   )
 }

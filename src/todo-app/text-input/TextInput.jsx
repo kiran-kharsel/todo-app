@@ -3,7 +3,7 @@ import './style.css'
 
 function TextInput({value = '', onChange = ()=>{}}) {
     function handleChange(e){
-        onChange(e.target.value)
+      onChange(e.target.value)
     };
 
 

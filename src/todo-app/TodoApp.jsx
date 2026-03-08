@@ -13,11 +13,21 @@ function TodoApp() {
     setTodo(value)
   }
 
+  function handleAddTodo(){
+
+    const todoObj = {
+      todo: todo,
+      id: Math.floor(Math.random() * 10_000_000) + 1,
+    };
+
+    setTodoList([todoObj, ...todoList])
+  }
+
   return (
     <div>
       <div>
         <TextInput value={todo} onChange={handleChange}/>
-        <Button label={'add'}/>
+        <Button label={'add'} onClick={handleAddTodo}/>
       </div>
 
       <TodoList/>

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import './style.css'
 
 import TextInput from './text-input'
-import Button from './Button'
+import Button from './button'
 import TodoList from './todo-list'
 
 function TodoApp() {

@@ -9,11 +9,11 @@ function TodoApp() {
   const [todoList, setTodoList] = useState([])
   const [todo, setTodo] = useState('')
 
-  function handleChange(value){
+  function handleChange(value) {
     setTodo(value)
   }
 
-  function handleAddTodo(){
+  function handleAddTodo() {
 
     const todoObj = {
       todo: todo,
@@ -25,14 +25,36 @@ function TodoApp() {
   }
 
   return (
-    <div>
-      <div>
-        <TextInput value={todo} onChange={handleChange}/>
-        <Button label={'add'} onClick={handleAddTodo}/>
-      </div>
+    <>
+      <div className='todo-container'>
+        <header className='todo-header'>
+          <h1>TODO</h1>
+          <div>button fot theme</div>
+        </header>
 
-      <TodoList todos={todoList}/>
-    </div>
+        <div className='todo-input'>
+          <TextInput value={todo} onChange={handleChange} />
+          <Button label={'add'} onClick={handleAddTodo} />
+        </div>
+
+        <div className="todo">
+
+          <TodoList todos={todoList} />
+          <div className='todo-info'>
+            <div>2 item left</div>
+            <div>clear completed</div>
+          </div>
+        </div>
+
+        <div className="todo-status">
+          <div>all</div>
+          <div>completed</div>
+          <div>active</div>
+        </div>
+
+      </div>
+    </>
+
   )
 }
 

@@ -5,7 +5,7 @@ import Button from '../button'
 
 function TodoList({todos = []}) {
   return (
-    <div>
+    <div className='todo-list'>
       {
         todos.map((data) => {
           return (
@@ -24,10 +24,12 @@ export default TodoList;
 
 function TodoItem({data}){
   return(
-    <div>
+    <div className='todo-item'>
       <span>{data.todo}</span>
-      <Button label={'edit'}/>
-      <Button label={'delete'}/>
+      <div className="action-btns">
+        <Button label={'edit'}/>
+        <Button label={'delete'}/>
+      </div>
     </div>
   )
 }

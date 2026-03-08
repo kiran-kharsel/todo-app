@@ -7,7 +7,7 @@ function App() {
 
   return (
     <>
-      <TodoApp/>
+      <TodoApp />
     </>
   )
 }

@@ -8,7 +8,7 @@ function TextInput({value = '', onChange = ()=>{}}) {
 
 
   return (
-    <input type="text" placeholder='enter todos...'
+    <input className='textinput' type="text" placeholder='enter todos...'
     value={value} onChange={handleChange} />
   )
 }

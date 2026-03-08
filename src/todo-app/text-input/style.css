@@ -1,0 +1,9 @@
+.textinput{
+    height: 100%;
+    width: 70%;
+    border: 0;
+    outline: 0;
+    padding: 0;
+    font-size: 1rem;
+    background-color: transparent;
+}

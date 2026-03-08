@@ -21,6 +21,7 @@ function TodoApp() {
     };
 
     setTodoList([todoObj, ...todoList])
+    setTodo('')
   }
 
   return (

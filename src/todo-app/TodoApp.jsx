@@ -24,6 +24,14 @@ function TodoApp() {
     setTodo('')
   }
 
+  function handleDelete(id){
+    const filteredTodoList = todoList.filter((todo) => {
+      return todo.id !== id
+    });
+
+    setTodoList(filteredTodoList)
+  }
+
   return (
     <>
       <div className='todo-container'>
@@ -38,8 +46,7 @@ function TodoApp() {
         </div>
 
         <div className="todo">
-
-          <TodoList todos={todoList} />
+          <TodoList todos={todoList} onDelete={handleDelete}/>
           <div className='todo-info'>
             <div>2 item left</div>
             <div>clear completed</div>

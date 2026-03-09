@@ -1,16 +1,21 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import './style.css'
 
 import TextInput from './text-input'
 import Button from './button'
 import TodoList from './todo-list'
 
+import { ThemeContext } from '../App';
+
+
 function TodoApp() {
   const [todoList, setTodoList] = useState([])
   const [todo, setTodo] = useState('')
   const [filter, setFilter] = useState('all')
   const [activeIndex, setActiveIndex] = useState(0)
-  const [darkTheme, setDarkTheme] = useState(false)
+  // const [darkTheme, setDarkTheme] = useState(false)
+
+  const { darkTheme, setDarkTheme } = useContext(ThemeContext);
 
   const filterButtons = ['all', 'active', 'completed']
 

@@ -1,13 +1,17 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import './App.css'
 import TodoApp from './todo-app'
 
+export const ThemeContext = React.createContext(); // default value
+
 function App() {
-  const [count, setCount] = useState(0)
+  const [darkTheme, setDarkTheme] = useState(false);
 
   return (
     <>
-      <TodoApp />
+      <ThemeContext.Provider value={{ darkTheme, setDarkTheme }}>
+        <TodoApp />
+      </ThemeContext.Provider>
     </>
   )
 }

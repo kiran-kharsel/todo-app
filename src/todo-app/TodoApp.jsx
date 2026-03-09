@@ -19,6 +19,7 @@ function TodoApp() {
       todo: todo,
       id: Math.floor(Math.random() * 10_000_000) + 1,
       isEditMode: false,
+      isCompleted: false,
     };
 
     setTodoList([todoObj, ...todoList])
@@ -62,6 +63,13 @@ function TodoApp() {
     setTodoList(newTodoList)
   }
 
+  function handleTodoComplete(index){
+    const newTodoList = structuredClone(todoList)
+    newTodoList[index].isCompleted = !newTodoList[index].isCompleted;
+
+    setTodoList(newTodoList)
+  }
+
   return (
     <>
       <div className='todo-container'>
@@ -82,9 +90,10 @@ function TodoApp() {
           onEdit={handleEdit}
           onEditSave={handleEditSave}
           onEditCancel={handleEditCancel}
+          onTodoComplete={handleTodoComplete}
           />
           <div className='todo-info'>
-            <div>2 item left</div>
+            <div>{todoList.length} item left</div>
             <div>clear completed</div>
           </div>
         </div>

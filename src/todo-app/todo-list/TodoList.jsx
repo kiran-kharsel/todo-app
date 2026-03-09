@@ -3,7 +3,7 @@ import './style.css'
 
 import Button from '../button'
 
-function TodoList({ todos = [], onDelete, onEdit, onEditSave, onEditCancel }) {
+function TodoList({ todos = [], onDelete, onEdit, onEditSave, onEditCancel, onTodoComplete }) {
   return (
     <div className='todo-list'>
       {
@@ -17,6 +17,7 @@ function TodoList({ todos = [], onDelete, onEdit, onEditSave, onEditCancel }) {
               onEdit={onEdit}
               onEditSave={onEditSave}
               onEditCancel={onEditCancel}
+              onTodoComplete={onTodoComplete}
             />
           )
         })
@@ -30,7 +31,7 @@ export default TodoList;
 
 // todo item component
 
-function TodoItem({ index, data, onDelete, onEdit, onEditSave, onEditCancel }) {
+function TodoItem({ index, data, onDelete, onEdit, onEditSave, onEditCancel, onTodoComplete }) {
 
   const inputRef = useRef('')
 
@@ -59,6 +60,10 @@ function TodoItem({ index, data, onDelete, onEdit, onEditSave, onEditCancel }) {
     onEditCancel(index)
   }
 
+  function handleChange(){
+    onTodoComplete(index)
+  }
+
   // check for isEditMode
   if (data.isEditMode) {
     return (
@@ -74,7 +79,10 @@ function TodoItem({ index, data, onDelete, onEdit, onEditSave, onEditCancel }) {
 
   return (
     <div className='todo-item'>
-      <span>{data.todo}</span>
+      <div>
+        <input onChange={handleChange}  checked={data.isCompleted} className='todo-check' type="checkbox" />
+        <span>{data.todo}</span>
+      </div>
       <div className="action-btns">
         <Button label={'edit'} onClick={handleEdit(data.id)} />
         <Button label={'delete'} onClick={handleDelete(data.id)} />

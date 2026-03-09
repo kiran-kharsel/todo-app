@@ -14,6 +14,22 @@
     border-bottom: 1px solid grey;
     padding: 15px;
 }
+.todo-item div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.todo-check{
+    accent-color: cornflowerblue;
+    width: 20px;
+    height: 20px;
+}
+
+.todo-check:checked ~ span{
+    text-decoration: line-through;
+    color: gray;
+}
 
 .todo-item .action-btns button{
     border: 0;

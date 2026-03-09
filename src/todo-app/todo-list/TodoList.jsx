@@ -1,19 +1,21 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import './style.css'
 
 import Button from '../button'
 
-function TodoList({ todos = [], onDelete, onEdit }) {
+function TodoList({ todos = [], onDelete, onEdit, onEditSave }) {
   return (
     <div className='todo-list'>
       {
-        todos.map((data) => {
+        todos.map((data, index) => {
           return (
             <TodoItem
               key={data.id}
+              index={index}
               data={data}
               onDelete={onDelete}
               onEdit={onEdit}
+              onEditSave={onEditSave}
             />
           )
         })
@@ -27,7 +29,9 @@ export default TodoList;
 
 // todo item component
 
-function TodoItem({ data, onDelete, onEdit }) {
+function TodoItem({ index, data, onDelete, onEdit, onEditSave }) {
+
+  const inputRef = useRef('')
 
   function handleDelete(id) {
     return () => {
@@ -41,14 +45,31 @@ function TodoItem({ data, onDelete, onEdit }) {
     }
   }
 
+
+  function handleEditSave(id) {
+    return () => {
+      // get value using ref
+      const value = inputRef.current.value;
+      onEditSave(index, value)
+      // false editmode
+      // clear ref input
+      inputRef.current.value = '';
+
+    }
+  }
+
+  function handleEditCancel(id) {
+
+  }
+
   // check for isEditMode
   if (data.isEditMode) {
     return (
       <div className='todo-item'>
-        <input type="text" value={data.todo} />
+        <input ref={inputRef} type="text" defaultValue={data.todo} />
         <div className="action-btns">
-          <Button label={'save'} onClick={handleEdit(data.id)} />
-          <Button label={'cancel'} onClick={handleDelete(data.id)} />
+          <Button label={'save'} onClick={handleEditSave(data)} />
+          <Button label={'cancel'} onClick={handleEditCancel(data.id)} />
         </div>
       </div>
     )

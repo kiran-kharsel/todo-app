@@ -47,6 +47,14 @@ function TodoApp() {
     setTodoList(newTodoList)
   }
 
+  function handleEditSave(index, newValue){
+    const newTodoList = structuredClone(todoList)
+    newTodoList[index].todo = newValue;
+    newTodoList[index].isEditMode = false;
+
+    setTodoList(newTodoList)
+  }
+
   return (
     <>
       <div className='todo-container'>
@@ -65,6 +73,8 @@ function TodoApp() {
           todos={todoList} 
           onDelete={handleDelete}
           onEdit={handleEdit}
+          onEditSave={handleEditSave}
+          onEditCancel={''}
           />
           <div className='todo-info'>
             <div>2 item left</div>

@@ -26,7 +26,7 @@
 }
 
 .todo-check{
-    accent-color: cornflowerblue;
+    accent-color: darkcyan;
     width: 20px;
     height: 20px;
 }
@@ -47,9 +47,9 @@
     padding: 0.4rem;
     border-radius: 4px;
     transition: 0.4s;
+    font-weight: 600;
 }
 
 .todo-item .action-btns button:hover{
-    background-color: cornflowerblue;
-    color: white;
+    color: darkcyan;
 }

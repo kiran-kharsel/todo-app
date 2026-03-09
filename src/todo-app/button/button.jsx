@@ -5,7 +5,8 @@ function button({label, onClick = ()=>{}, isActive}) {
   return (
     <button 
     style={{
-      color: isActive ? 'cornflowerblue' : 'black',
+      color: isActive ? 'darkcyan' : '',
+      fontWeight: isActive ? 600 : '',
     }}
     onClick={onClick}>
       {label}

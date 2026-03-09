@@ -152,7 +152,7 @@ function TodoApp() {
                 <Button
                   key={index}
                   label={label}
-                  isActive = {activeIndex === index}
+                  isActive={activeIndex === index}
                   onClick={handleFilterButtonClick(label, index)} />
               )
             })

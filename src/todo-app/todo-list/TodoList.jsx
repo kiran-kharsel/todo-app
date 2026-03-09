@@ -78,7 +78,7 @@ function TodoItem({ index, data, onDelete, onEdit, onEditSave, onEditCancel, onT
   if (data.isEditMode) {
     return (
       <div className='todo-item'>
-        <input ref={inputRef} type="text" defaultValue={data.todo} />
+        <input autoFocus ref={inputRef} type="text" defaultValue={data.todo} />
         <div className="action-btns">
           <Button label={'save'} onClick={handleEditSave} />
           <Button label={'cancel'} onClick={handleEditCancel} />

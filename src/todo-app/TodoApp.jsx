@@ -13,6 +13,11 @@ function TodoApp() {
     return todoList.filter(todo => !todo.isCompleted).length;
   };
 
+  function handleClearCompleted(){
+    const newTodoList = todoList.filter(todo => !todo.isCompleted)
+    setTodoList(newTodoList)
+  }
+
 
   function handleChange(value) {
     setTodo(value)
@@ -103,7 +108,9 @@ function TodoApp() {
             <div>
                {getIncompleteCount()} item left
             </div>
-            <div>clear completed</div>
+            <div>
+              <Button label={'clear completed'} onClick={handleClearCompleted}/>
+            </div>
           </div>
         </div>
 

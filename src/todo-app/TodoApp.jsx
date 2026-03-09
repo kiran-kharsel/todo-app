@@ -72,7 +72,7 @@ function TodoApp() {
 
         <div className='todo-input'>
           <TextInput value={todo} onChange={handleChange} />
-          <Button label={'add'} onClick={handleAddTodo} />
+          <Button label={'add todo'} onClick={handleAddTodo} />
         </div>
 
         <div className="todo">

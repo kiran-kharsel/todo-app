@@ -17,7 +17,19 @@
     color: white;
 }
 
+.todo-header button{
+    background-color: transparent;
+    border: 0;
+    outline: 0;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: 0.4s linear;
 
+}
+
+.todo-header button:hover{
+    transform: scale(1.2);
+}
 
 .todo{
     background-color: white;

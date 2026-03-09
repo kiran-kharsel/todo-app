@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './style.css'
 
 import TextInput from './text-input'
@@ -10,8 +10,17 @@ function TodoApp() {
   const [todo, setTodo] = useState('')
   const [filter, setFilter] = useState('all')
   const [activeIndex, setActiveIndex] = useState(0)
+  const [darkTheme, setDarkTheme] = useState(false)
 
   const filterButtons = ['all', 'active', 'completed']
+
+  useEffect(() => {
+    document.body.className = darkTheme ? "dark-theme" : "light-theme";
+  }, [darkTheme])
+
+  function handleThemeChange() {
+    setDarkTheme(!darkTheme)
+  }
 
   const getIncompleteCount = () => {
     return todoList.filter(todo => !todo.isCompleted).length;
@@ -118,15 +127,24 @@ function TodoApp() {
       <div className='todo-container'>
         <header className='todo-header'>
           <h1>TODO</h1>
-          <div>button fot theme</div>
+          <Button
+            label={darkTheme ? '☀️' : '🌙'}
+            onClick={handleThemeChange}
+          />
         </header>
 
-        <div className='todo-input'>
+        <div className='todo-input'
+        style={{
+          backgroundColor: darkTheme ? '#30475E' : 'white',
+        }}>
           <TextInput value={todo} onChange={handleChange} />
           <Button label={'add todo'} onClick={handleAddTodo} />
         </div>
 
-        <div className="todo">
+        <div className="todo"
+          style={{
+            backgroundColor: darkTheme ? '#30475E' : 'white',
+          }}>
           <TodoList
             todos={visibleTodos}
             onDelete={handleDelete}
@@ -135,7 +153,10 @@ function TodoApp() {
             onEditCancel={handleEditCancel}
             onTodoComplete={handleTodoComplete}
           />
-          <div className='todo-info'>
+          <div className='todo-info'
+            style={{
+              backgroundColor: darkTheme ? '#30475E' : 'white',
+            }}>
             <div>
               {getIncompleteCount()} items left
             </div>
@@ -145,7 +166,10 @@ function TodoApp() {
           </div>
         </div>
 
-        <div className="todo-filter">
+        <div className="todo-filter"
+          style={{
+            backgroundColor: darkTheme ? '#30475E' : 'white',
+          }}>
           {
             filterButtons.map((label, index) => {
               return (

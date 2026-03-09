@@ -3,7 +3,7 @@ import './style.css'
 
 import Button from '../button'
 
-function TodoList({ todos = [], onDelete, onEdit, onEditSave }) {
+function TodoList({ todos = [], onDelete, onEdit, onEditSave, onEditCancel }) {
   return (
     <div className='todo-list'>
       {
@@ -16,6 +16,7 @@ function TodoList({ todos = [], onDelete, onEdit, onEditSave }) {
               onDelete={onDelete}
               onEdit={onEdit}
               onEditSave={onEditSave}
+              onEditCancel={onEditCancel}
             />
           )
         })
@@ -29,7 +30,7 @@ export default TodoList;
 
 // todo item component
 
-function TodoItem({ index, data, onDelete, onEdit, onEditSave }) {
+function TodoItem({ index, data, onDelete, onEdit, onEditSave, onEditCancel }) {
 
   const inputRef = useRef('')
 
@@ -46,20 +47,16 @@ function TodoItem({ index, data, onDelete, onEdit, onEditSave }) {
   }
 
 
-  function handleEditSave(id) {
-    return () => {
-      // get value using ref
-      const value = inputRef.current.value;
-      onEditSave(index, value)
-      // false editmode
-      // clear ref input
-      inputRef.current.value = '';
-
-    }
+  function handleEditSave() {
+    // get value using ref
+    const value = inputRef.current.value;
+    onEditSave(index, value)
+    // clear ref input
+    inputRef.current.value = '';
   }
 
-  function handleEditCancel(id) {
-
+  function handleEditCancel() {
+    onEditCancel(index)
   }
 
   // check for isEditMode
@@ -68,8 +65,8 @@ function TodoItem({ index, data, onDelete, onEdit, onEditSave }) {
       <div className='todo-item'>
         <input ref={inputRef} type="text" defaultValue={data.todo} />
         <div className="action-btns">
-          <Button label={'save'} onClick={handleEditSave(data)} />
-          <Button label={'cancel'} onClick={handleEditCancel(data.id)} />
+          <Button label={'save'} onClick={handleEditSave} />
+          <Button label={'cancel'} onClick={handleEditCancel} />
         </div>
       </div>
     )

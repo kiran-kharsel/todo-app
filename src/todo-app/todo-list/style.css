@@ -14,3 +14,21 @@
     border-bottom: 1px solid grey;
     padding: 15px;
 }
+
+.todo-item .action-btns button{
+    border: 0;
+    outline: 0;
+    background-color: transparent;
+    margin-left: 15px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    text-transform: capitalize;
+    padding: 0.4rem;
+    border-radius: 4px;
+    transition: 0.4s;
+}
+
+.todo-item .action-btns button:hover{
+    background-color: cornflowerblue;
+    color: white;
+}

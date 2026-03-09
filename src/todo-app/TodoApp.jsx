@@ -4,6 +4,7 @@ import './style.css'
 import TextInput from './text-input'
 import Button from './button'
 import TodoList from './todo-list'
+import Panel from './panel'
 
 import { ThemeContext } from '../App';
 
@@ -13,7 +14,6 @@ function TodoApp() {
   const [todo, setTodo] = useState('')
   const [filter, setFilter] = useState('all')
   const [activeIndex, setActiveIndex] = useState(0)
-  // const [darkTheme, setDarkTheme] = useState(false)
 
   const { darkTheme, setDarkTheme } = useContext(ThemeContext);
 
@@ -138,13 +138,13 @@ function TodoApp() {
           />
         </header>
 
-        <div className='todo-input'
-        style={{
-          backgroundColor: darkTheme ? '#30475E' : 'white',
-        }}>
-          <TextInput value={todo} onChange={handleChange} />
-          <Button label={'add todo'} onClick={handleAddTodo} />
-        </div>
+        <Panel>
+          <div className='todo-input'>
+            <TextInput value={todo} onChange={handleChange} />
+            <Button label={'add todo'} onClick={handleAddTodo} />
+          </div>
+        </Panel>
+
 
         <div className="todo"
           style={{

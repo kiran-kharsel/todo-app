@@ -1,14 +1,23 @@
-import React from 'react'
+import React,{useContext} from 'react'
 import './style.css'
 
-function TextInput({value = '', onChange = ()=>{}}) {
-    function handleChange(e){
-      onChange(e.target.value)
-    };
+import { ThemeContext } from '../../App';
+
+function TextInput({ value = '', onChange = () => { } }) {
+  const { darkTheme } = useContext(ThemeContext);
+
+  function handleChange(e) {
+    onChange(e.target.value)
+  };
 
 
   return (
-    <input className='textinput' type="text" placeholder='enter todos...'
+    <input 
+    style={{
+      color: darkTheme ? 'white' : 'black',
+    }}
+    className='textinput' type="text" 
+    placeholder='enter todos...'
     value={value} onChange={handleChange} />
   )
 }

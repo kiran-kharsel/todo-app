@@ -43,13 +43,11 @@
 
 .todo-input{
     width: 100%;
-    background-color: transparent;
     display: flex;
     align-items: center;
     justify-content: space-between;
     height: 50px;
     border-radius: 6px;
-    background-color: white;
 }
 
 .todo-input input{

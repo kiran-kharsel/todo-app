@@ -8,6 +8,7 @@ import TodoList from './todo-list'
 function TodoApp() {
   const [todoList, setTodoList] = useState([])
   const [todo, setTodo] = useState('')
+  const [filter, setFilter] = useState('all')
 
   const getIncompleteCount = () => {
     return todoList.filter(todo => !todo.isCompleted).length;
@@ -80,6 +81,23 @@ function TodoApp() {
     setTodoList(newTodoList)
   }
 
+  function handleShowAllTodos(){
+    setFilter('all')
+  }
+
+  function handleShowActiveTodos(){
+    setFilter('active')
+  }
+
+  function handleShowCompletedTodos(){
+    setFilter('completed')
+  }
+
+  const visibleTodos = todoList.filter((todo) => {
+    if(filter === 'all') return todo;
+    if(filter === 'active') return !todo.isCompleted;
+    if(filter === 'completed') return todo.isCompleted;
+  })
 
 
   return (
@@ -97,7 +115,7 @@ function TodoApp() {
 
         <div className="todo">
           <TodoList 
-          todos={todoList} 
+          todos={visibleTodos} 
           onDelete={handleDelete}
           onEdit={handleEdit}
           onEditSave={handleEditSave}
@@ -114,10 +132,10 @@ function TodoApp() {
           </div>
         </div>
 
-        <div className="todo-status">
-          <div>all</div>
-          <div>completed</div>
-          <div>active</div>
+        <div className="todo-filter">
+          <Button label={'all'} onClick={handleShowAllTodos}/>
+          <Button label={'active'} onClick={handleShowActiveTodos}/>
+          <Button label={'completed'} onClick={handleShowCompletedTodos}/>
         </div>
 
       </div>

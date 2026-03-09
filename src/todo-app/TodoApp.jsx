@@ -9,6 +9,7 @@ function TodoApp() {
   const [todoList, setTodoList] = useState([])
   const [todo, setTodo] = useState('')
 
+
   function handleChange(value) {
     setTodo(value)
   }
@@ -70,6 +71,8 @@ function TodoApp() {
     setTodoList(newTodoList)
   }
 
+
+
   return (
     <>
       <div className='todo-container'>
@@ -93,7 +96,9 @@ function TodoApp() {
           onTodoComplete={handleTodoComplete}
           />
           <div className='todo-info'>
-            <div>{todoList.length} item left</div>
+            <div>
+               {todoList.filter((todo) => !todo.isCompleted).length} item left
+            </div>
             <div>clear completed</div>
           </div>
         </div>

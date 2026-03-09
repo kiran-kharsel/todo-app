@@ -75,6 +75,7 @@
     cursor: pointer;
     text-transform: capitalize;
     transition: 0.4s;
+    color: grey;
 }
 
 .todo-info button:hover{

@@ -9,12 +9,15 @@ function TodoApp() {
   const [todoList, setTodoList] = useState([])
   const [todo, setTodo] = useState('')
   const [filter, setFilter] = useState('all')
+  const [activeIndex, setActiveIndex] = useState(0)
+
+  const filterButtons = ['all', 'active', 'completed']
 
   const getIncompleteCount = () => {
     return todoList.filter(todo => !todo.isCompleted).length;
   };
 
-  function handleClearCompleted(){
+  function handleClearCompleted() {
     const newTodoList = todoList.filter(todo => !todo.isCompleted)
     setTodoList(newTodoList)
   }
@@ -37,7 +40,7 @@ function TodoApp() {
     setTodo('')
   }
 
-  function handleDelete(id){
+  function handleDelete(id) {
     const filteredTodoList = todoList.filter((todo) => {
       return todo.id !== id
     });
@@ -45,21 +48,21 @@ function TodoApp() {
     setTodoList(filteredTodoList)
   }
 
-  function handleEdit(id){
+  function handleEdit(id) {
     const newTodoList = todoList.map((todo) => {
-      if(todo.id === id){
+      if (todo.id === id) {
         todo.isEditMode = true;
-      }else{
+      } else {
         todo.isEditMode = false;
       }
 
-      return {...todo}
+      return { ...todo }
     });
 
     setTodoList(newTodoList)
   }
 
-  function handleEditSave(index, newValue){
+  function handleEditSave(index, newValue) {
     const newTodoList = structuredClone(todoList)
     newTodoList[index].todo = newValue;
     newTodoList[index].isEditMode = false;
@@ -67,36 +70,46 @@ function TodoApp() {
     setTodoList(newTodoList)
   }
 
-  function handleEditCancel(index){
+  function handleEditCancel(index) {
     const newTodoList = structuredClone(todoList)
     newTodoList[index].isEditMode = false;
 
     setTodoList(newTodoList)
   }
 
-  function handleTodoComplete(index){
+  function handleTodoComplete(index) {
     const newTodoList = structuredClone(todoList)
     newTodoList[index].isCompleted = !newTodoList[index].isCompleted;
 
     setTodoList(newTodoList)
   }
 
-  function handleShowAllTodos(){
-    setFilter('all')
+  function handleFilterButtonClick(label, index) {
+    return () => {
+      setActiveIndex(index);
+
+      switch (label) {
+        case 'all':
+          setFilter(label)
+          break;
+        case 'active':
+          setFilter(label)
+          break;
+        case 'completed':
+          setFilter(label)
+          break;
+
+        default:
+          break;
+      }
+    }
   }
 
-  function handleShowActiveTodos(){
-    setFilter('active')
-  }
-
-  function handleShowCompletedTodos(){
-    setFilter('completed')
-  }
 
   const visibleTodos = todoList.filter((todo) => {
-    if(filter === 'all') return todo;
-    if(filter === 'active') return !todo.isCompleted;
-    if(filter === 'completed') return todo.isCompleted;
+    if (filter === 'all') return todo;
+    if (filter === 'active') return !todo.isCompleted;
+    if (filter === 'completed') return todo.isCompleted;
   })
 
 
@@ -114,28 +127,36 @@ function TodoApp() {
         </div>
 
         <div className="todo">
-          <TodoList 
-          todos={visibleTodos} 
-          onDelete={handleDelete}
-          onEdit={handleEdit}
-          onEditSave={handleEditSave}
-          onEditCancel={handleEditCancel}
-          onTodoComplete={handleTodoComplete}
+          <TodoList
+            todos={visibleTodos}
+            onDelete={handleDelete}
+            onEdit={handleEdit}
+            onEditSave={handleEditSave}
+            onEditCancel={handleEditCancel}
+            onTodoComplete={handleTodoComplete}
           />
           <div className='todo-info'>
             <div>
-               {getIncompleteCount()} item left
+              {getIncompleteCount()} items left
             </div>
             <div>
-              <Button label={'clear completed'} onClick={handleClearCompleted}/>
+              <Button label={'clear completed'} onClick={handleClearCompleted} />
             </div>
           </div>
         </div>
 
         <div className="todo-filter">
-          <Button label={'all'} onClick={handleShowAllTodos}/>
-          <Button label={'active'} onClick={handleShowActiveTodos}/>
-          <Button label={'completed'} onClick={handleShowCompletedTodos}/>
+          {
+            filterButtons.map((label, index) => {
+              return (
+                <Button
+                  key={index}
+                  label={label}
+                  isActive = {activeIndex === index}
+                  onClick={handleFilterButtonClick(label, index)} />
+              )
+            })
+          }
         </div>
 
       </div>

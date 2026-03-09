@@ -1,9 +1,15 @@
 import React from 'react'
 import './style.css'
 
-function button({label, onClick = ()=>{}}) {
+function button({label, onClick = ()=>{}, isActive}) {
   return (
-    <button onClick={onClick}>{label}</button>
+    <button 
+    style={{
+      color: isActive ? 'cornflowerblue' : 'black',
+    }}
+    onClick={onClick}>
+      {label}
+    </button>
   )
 }
 

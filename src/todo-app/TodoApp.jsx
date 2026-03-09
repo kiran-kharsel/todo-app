@@ -18,6 +18,7 @@ function TodoApp() {
     const todoObj = {
       todo: todo,
       id: Math.floor(Math.random() * 10_000_000) + 1,
+      isEditMode: false,
     };
 
     setTodoList([todoObj, ...todoList])
@@ -30,6 +31,20 @@ function TodoApp() {
     });
 
     setTodoList(filteredTodoList)
+  }
+
+  function handleEdit(id){
+    const newTodoList = todoList.map((todo) => {
+      if(todo.id === id){
+        todo.isEditMode = true;
+      }else{
+        todo.isEditMode = false;
+      }
+
+      return {...todo}
+    });
+
+    setTodoList(newTodoList)
   }
 
   return (
@@ -46,7 +61,11 @@ function TodoApp() {
         </div>
 
         <div className="todo">
-          <TodoList todos={todoList} onDelete={handleDelete}/>
+          <TodoList 
+          todos={todoList} 
+          onDelete={handleDelete}
+          onEdit={handleEdit}
+          />
           <div className='todo-info'>
             <div>2 item left</div>
             <div>clear completed</div>

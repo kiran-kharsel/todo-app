@@ -43,6 +43,10 @@ function TodoApp() {
 
   function handleAddTodo() {
 
+    if(todo === ''){
+      return
+    }
+
     const todoObj = {
       todo: todo,
       id: Math.floor(Math.random() * 10_000_000) + 1,

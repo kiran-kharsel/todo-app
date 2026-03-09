@@ -5,12 +5,13 @@ import { ThemeContext } from '../../App';
 
 function button({label, onClick = ()=>{}, isActive}) {
   const { darkTheme } = useContext(ThemeContext);
+
   return (
-    <button 
-    style={{
-      color: isActive ? 'darkcyan' : darkTheme ? 'white' : 'black',
-      fontWeight: isActive ? 600 : '',
-    }}
+    <button
+    className={`
+      ${darkTheme ? 'dark-theme' : 'light-theme'}
+      ${isActive ? 'active' : ''}
+    `}
     onClick={onClick}>
       {label}
     </button>

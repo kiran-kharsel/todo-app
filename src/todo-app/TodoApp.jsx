@@ -9,6 +9,10 @@ function TodoApp() {
   const [todoList, setTodoList] = useState([])
   const [todo, setTodo] = useState('')
 
+  const getIncompleteCount = () => {
+    return todoList.filter(todo => !todo.isCompleted).length;
+  };
+
 
   function handleChange(value) {
     setTodo(value)
@@ -97,7 +101,7 @@ function TodoApp() {
           />
           <div className='todo-info'>
             <div>
-               {todoList.filter((todo) => !todo.isCompleted).length} item left
+               {getIncompleteCount()} item left
             </div>
             <div>clear completed</div>
           </div>

@@ -67,6 +67,20 @@
     /* border-top: 1px solid grey; */
 }
 
+.todo-info button{
+    border: 0;
+    outline: 0;
+    background-color: transparent;
+    font-size: 0.9rem;
+    cursor: pointer;
+    text-transform: capitalize;
+    transition: 0.4s;
+}
+
+.todo-info button:hover{
+    color: red;
+}
+
 
 .todo-status{
     background-color: white;

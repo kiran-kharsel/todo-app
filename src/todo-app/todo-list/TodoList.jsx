@@ -4,26 +4,36 @@ import './style.css'
 import Button from '../button'
 
 function TodoList({ todos = [], onDelete, onEdit, onEditSave, onEditCancel, onTodoComplete }) {
-  return (
-    <div className='todo-list'>
-      {
-        todos.map((data, index) => {
-          return (
-            <TodoItem
-              key={data.id}
-              index={index}
-              data={data}
-              onDelete={onDelete}
-              onEdit={onEdit}
-              onEditSave={onEditSave}
-              onEditCancel={onEditCancel}
-              onTodoComplete={onTodoComplete}
-            />
-          )
-        })
-      }
-    </div>
-  )
+
+  if (todos && todos.length > 0) {
+    return (
+      <div className='todo-list'>
+        {
+          todos.map((data, index) => {
+            return (
+              <TodoItem
+                key={data.id}
+                index={index}
+                data={data}
+                onDelete={onDelete}
+                onEdit={onEdit}
+                onEditSave={onEditSave}
+                onEditCancel={onEditCancel}
+                onTodoComplete={onTodoComplete}
+              />
+            )
+          })
+        }
+      </div>
+    )
+  } else {
+    return (
+      <div className='empty-todo-list-message'>
+        Tasks list is empty!
+      </div>
+    )
+  }
+
 }
 
 export default TodoList;
@@ -60,7 +70,7 @@ function TodoItem({ index, data, onDelete, onEdit, onEditSave, onEditCancel, onT
     onEditCancel(index)
   }
 
-  function handleChange(){
+  function handleChange() {
     onTodoComplete(index)
   }
 
@@ -80,7 +90,7 @@ function TodoItem({ index, data, onDelete, onEdit, onEditSave, onEditCancel, onT
   return (
     <div className='todo-item'>
       <div>
-        <input onChange={handleChange}  checked={data.isCompleted} className='todo-check' type="checkbox" />
+        <input onChange={handleChange} checked={data.isCompleted} className='todo-check' type="checkbox" />
         <span>{data.todo}</span>
       </div>
       <div className="action-btns">
